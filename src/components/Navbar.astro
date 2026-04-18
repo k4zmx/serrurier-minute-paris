@@ -1,0 +1,238 @@
+---
+const currentPath = Astro.url.pathname;
+---
+
+<nav class="navbar">
+  <div class="navbar-inner">
+
+    <a href="/" class="logo" aria-label="Serrurier Minute — Accueil">
+      <span class="logo-pill">
+        <img src="/logo.png" alt="Serrurier Minute" width="140" height="40" />
+      </span>
+    </a>
+
+    <ul class="links">
+      <li><a href="/" class={currentPath === '/' ? 'active' : ''}>Accueil</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#apropos">À propos</a></li>
+      <li><a href="#avis">Avis</a></li>
+    </ul>
+
+    <div class="right">
+      <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </div>
+
+  </div>
+
+  <div class="drawer" id="navbar-drawer">
+    <ul class="drawer-links">
+      <li><a href="/">Accueil</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#apropos">À propos</a></li>
+      <li><a href="#avis">Avis</a></li>
+    </ul>
+  </div>
+</nav>
+
+<style>
+  .navbar {
+    width: 100%;
+    background: var(--nav-glass);
+    backdrop-filter: saturate(160%) blur(14px);
+    -webkit-backdrop-filter: saturate(160%) blur(14px);
+    border-bottom: 1px solid var(--line);
+    position: sticky;
+    top: 34px;
+    z-index: 40;
+  }
+
+  .navbar-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    gap: 0.5rem;
+  }
+
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    flex-shrink: 0;
+    z-index: 1;
+  }
+
+  .logo-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo-pill img {
+    height: 36px;
+    width: auto;
+    display: block;
+  }
+
+  .links {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .links li a {
+    position: relative;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 4px 0;
+    letter-spacing: 0.01em;
+    transition: color 0.2s ease;
+  }
+
+  .links li a:hover,
+  .links li a.active {
+    color: var(--text);
+  }
+
+  .links li a.active::before {
+    content: '';
+    position: absolute;
+    left: -12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+  }
+
+  .right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    z-index: 1;
+  }
+
+  .burger {
+    display: none;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: 1px solid var(--line-strong);
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 0;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .burger span {
+    position: absolute;
+    left: 50%;
+    width: 18px;
+    height: 1.5px;
+    background: var(--text);
+    border-radius: 2px;
+    transform: translateX(-50%);
+    transition: transform 0.25s ease, top 0.25s ease, opacity 0.2s ease;
+  }
+
+  .burger span:nth-child(1) { top: 14px; }
+  .burger span:nth-child(2) { top: 23px; }
+
+  .burger.is-open span:nth-child(1) {
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%) rotate(45deg);
+  }
+
+  .burger.is-open span:nth-child(2) {
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%) rotate(-45deg);
+  }
+
+  .drawer {
+    overflow: hidden;
+    height: 0;
+    transition: height 0.3s ease;
+    background: var(--bg-2);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .drawer-links {
+    list-style: none;
+    padding: 0.5rem 0;
+  }
+
+  .drawer-links li a {
+    display: block;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text);
+    text-decoration: none;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--line);
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .drawer-links li a:hover {
+    background: var(--bg-3);
+    color: var(--accent);
+  }
+
+  @media (max-width: 900px) {
+    .links { display: none; }
+  }
+
+  @media (max-width: 768px) {
+    .navbar { top: 0; }
+    .burger { display: inline-flex; align-items: center; justify-content: center; }
+  }
+
+  @media (max-width: 380px) {
+    .logo-pill img { height: 30px; }
+  }
+</style>
+
+<script>
+  const burger = document.querySelector('.burger') as HTMLButtonElement;
+  const drawer = document.getElementById('navbar-drawer') as HTMLElement;
+
+  function openDrawer() {
+    drawer.style.height = drawer.scrollHeight + 'px';
+    drawer.addEventListener('transitionend', () => {
+      if (drawer.style.height !== '0px') drawer.style.height = 'auto';
+    }, { once: true });
+    burger.classList.add('is-open');
+    burger.setAttribute('aria-expanded', 'true');
+  }
+
+  function closeDrawer() {
+    drawer.style.height = drawer.scrollHeight + 'px';
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => { drawer.style.height = '0px'; });
+    });
+    burger.classList.remove('is-open');
+    burger.setAttribute('aria-expanded', 'false');
+  }
+
+  burger?.addEventListener('click', () => {
+    drawer.style.height === '0px' || drawer.style.height === '' ? openDrawer() : closeDrawer();
+  });
+
+  drawer?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => closeDrawer());
+  });
+</script>

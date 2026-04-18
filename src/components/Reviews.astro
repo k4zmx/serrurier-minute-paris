@@ -1,0 +1,513 @@
+---
+const reviews = [
+  { name: "Sophie L.", stars: 5,   text: "Porte claquée en sortant les poubelles… j'ai appelé et quelqu'un est arrivé en une trentaine de minutes. Très efficace et porte ouverte sans dégâts." },
+  { name: "Thomas R.", stars: 4.5, text: "Très bonne expérience. Arrivé rapidement et problème réglé en moins de 20 minutes." },
+  { name: "Julie M.",  stars: 4.5, text: "Super service. Le technicien a pris le temps de m'expliquer le problème de la serrure et l'a remplacée rapidement." },
+  { name: "Camille D.", stars: 4,  text: "J'avais cassé ma clé dans la serrure, le serrurier a réussi à l'extraire sans changer toute la serrure." },
+  { name: "Claire V.", stars: 4,   text: "Serrurier très sympathique et professionnel. Porte ouverte rapidement." },
+  { name: "Nadia K.",  stars: 4,   text: "Intervention sérieuse et personne très polie. Tout fonctionne parfaitement maintenant." },
+  { name: "Mehdi S.",  stars: 4,   text: "Service rapide et efficace. Je recommande sans problème." },
+  { name: "Lucas G.",  stars: 4,   text: "Satisfait. Intervention rapide et travail propre. Le tarif est correct pour une urgence." },
+  { name: "Laura P.",  stars: 3.5, text: "Bon service, rapide et efficace. Rien à redire sur l'intervention." },
+  { name: "David L.",  stars: 3.5, text: "Professionnel. Serrure remplacée rapidement et conseils utiles. Un peu cher mais c'était un weekend." },
+  { name: "Giulia M.", stars: 3.5, text: "Intervention propre et rapide. Le technicien était aimable." },
+  { name: "Chloé S.",  stars: 3.5, text: "Rassurant quand on est bloqué dehors. Intervention correcte, porte ouverte sans abîmer." },
+  { name: "Karim B.",  stars: 3.5, text: "Intervention rapide et serrurier correct. Travail bien fait mais un peu long à démarrer." },
+  { name: "Youssef H.", stars: 3.5, text: "Appelé pour une porte bloquée. Arrivée un peu après l'estimation mais problème résolu." },
+];
+---
+
+<section class="reviews" id="avis">
+  <div class="reviews-inner">
+
+    <div class="reviews-head">
+      <div class="rh-left">
+        <span class="reviews-label">
+          <span class="rl-mark">§</span>
+          Avis clients
+        </span>
+        <h2 class="reviews-h2">
+          Notés <em>4.5/5</em> sur Google<br/>— avis vérifiés.
+        </h2>
+      </div>
+
+      <div class="rh-right">
+        <a class="rating-card" href="#avis" aria-label="Avis clients sur Google">
+          <div class="rc-top">
+            <span class="rc-google" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 48 48">
+                <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+                <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+                <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+                <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+              </svg>
+            </span>
+            <div class="rc-text">
+              <span class="rc-platform">Avis Google</span>
+              <span class="rc-stars-strip" aria-hidden="true">
+                <span class="rc-star"></span><span class="rc-star"></span><span class="rc-star"></span><span class="rc-star"></span><span class="rc-star" style="--fill:0.5"></span>
+              </span>
+            </div>
+          </div>
+          <div class="rc-score-row">
+            <span class="rc-score">4,5</span>
+            <span class="rc-count">/ 5 · basé sur<br/>19 avis vérifiés</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="reviews-viewport">
+      <div class="reviews-track" id="reviews-track">
+        {reviews.map((r) => {
+          const full = Math.floor(r.stars);
+          const half = r.stars % 1 !== 0;
+          return (
+            <article class="rev-card">
+              <div class="rev-head">
+                <span class="rev-g" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 48 48">
+                    <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+                    <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+                    <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+                    <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+                  </svg>
+                </span>
+                <span class="rev-source">Avis publié sur Google</span>
+              </div>
+
+              <div class="rev-stars" aria-label={`${r.stars} sur 5`}>
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <span class="rev-star" style={`--fill:${i < full ? 1 : (i === full && half ? 0.5 : 0)}`}></span>
+                ))}
+              </div>
+
+              <p class="rev-text">"{r.text}"</p>
+
+              <div class="rev-foot">
+                <div class="rev-avatar">{r.name.charAt(0)}</div>
+                <div class="rev-meta">
+                  <span class="rev-name">{r.name}</span>
+                  <span class="rev-subline">Client local · Paris & IDF</span>
+                </div>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+
+    <div class="reviews-controls">
+      <button class="rc-arrow" data-dir="-1" aria-label="Précédent">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+      </button>
+      <div class="rc-progress"><span class="rc-bar" id="reviews-bar"></span></div>
+      <button class="rc-arrow" data-dir="1" aria-label="Suivant">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .reviews {
+    background: transparent;
+    padding: clamp(3.5rem, 7vw, 6rem) 0;
+    border-top: 1px solid var(--line);
+    position: relative;
+    z-index: 1;
+  }
+
+  .reviews-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .reviews-head {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    align-items: end;
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+  }
+
+  .reviews-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    margin-bottom: 1.25rem;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  .rl-mark {
+    font-family: 'Fraunces', serif;
+    font-weight: 800;
+    font-style: italic;
+    font-size: 18px;
+  }
+
+  .reviews-h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 800;
+    font-size: clamp(1.7rem, 3vw, 2.6rem);
+    color: var(--text);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+  }
+
+  .reviews-h2 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  /* Google rating summary card */
+  .rating-card {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 1rem 1.1rem;
+    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.2s ease;
+  }
+
+  .rating-card:hover { border-color: var(--accent); }
+
+  .rc-top {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+  }
+
+  .rc-google {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    background: var(--card-raised);
+    border: 1px solid var(--line);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .rc-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .rc-platform {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--text-muted);
+  }
+
+  .rc-stars-strip {
+    display: inline-flex;
+    gap: 2px;
+    align-items: center;
+  }
+
+  .rc-stars-strip .rc-star {
+    --fill: 1;
+    width: 12px;
+    height: 12px;
+    background: linear-gradient(90deg, #FBBC05 calc(var(--fill) * 100%), var(--line-strong) calc(var(--fill) * 100%));
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  }
+
+  .rc-score-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    padding-top: 0.6rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .rc-score {
+    font-family: 'Fraunces', serif;
+    font-weight: 800;
+    font-size: 2.6rem;
+    color: var(--text);
+    line-height: 1;
+    letter-spacing: -0.04em;
+  }
+
+  .rc-count {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-muted);
+    line-height: 1.3;
+    letter-spacing: 0.02em;
+  }
+
+  /* Carousel */
+  .reviews-viewport {
+    overflow: hidden;
+    margin: 0 -1.5rem;
+    padding: 0 1.5rem;
+    mask-image: linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%);
+  }
+
+  .reviews-track {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-behavior: auto; /* we animate via JS — prevent CSS fighting */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 0.5rem 0;
+  }
+
+  .reviews-track::-webkit-scrollbar { display: none; }
+
+  .rev-card {
+    flex: 0 0 360px;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 1.5rem 1.4rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .rev-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-3px);
+  }
+
+  .rev-head {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .rev-g {
+    width: 26px;
+    height: 26px;
+    border-radius: 7px;
+    background: var(--card-raised);
+    border: 1px solid var(--line);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .rev-source {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+  }
+
+  .rev-stars {
+    display: inline-flex;
+    gap: 2px;
+  }
+
+  .rev-star {
+    --fill: 1;
+    width: 15px;
+    height: 15px;
+    background: linear-gradient(90deg, #FBBC05 calc(var(--fill) * 100%), var(--line-strong) calc(var(--fill) * 100%));
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  }
+
+  .rev-text {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text);
+    line-height: 1.5;
+    flex-grow: 1;
+    font-style: italic;
+    letter-spacing: -0.005em;
+  }
+
+  .rev-foot {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .rev-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--on-accent);
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .rev-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .rev-name {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--text);
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  .rev-subline {
+    font-size: 11px;
+    color: var(--text-dim);
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: 0.02em;
+  }
+
+  /* Controls */
+  .reviews-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .rc-arrow {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1px solid var(--line-strong);
+    color: var(--text);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  }
+
+  .rc-arrow:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--on-accent);
+  }
+
+  .rc-arrow:active { transform: scale(0.94); }
+
+  .rc-progress {
+    flex: 1;
+    height: 3px;
+    background: var(--line);
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .rc-bar {
+    display: block;
+    height: 100%;
+    width: 8%;
+    background: var(--accent);
+    border-radius: 3px;
+    transition: width 0.3s ease;
+  }
+
+  @media (max-width: 720px) {
+    .reviews-head { grid-template-columns: 1fr; gap: 1.25rem; }
+    .rh-right { justify-self: stretch; }
+    .rating-card { min-width: 0; }
+    .rev-card { flex-basis: 82vw; max-width: 340px; padding: 1.4rem 1.25rem 1.25rem; }
+    .rev-text { font-size: 0.95rem; }
+  }
+</style>
+
+<script>
+  const track = document.getElementById('reviews-track') as HTMLElement;
+  const bar = document.getElementById('reviews-bar') as HTMLElement;
+  const arrows = document.querySelectorAll('.rc-arrow') as NodeListOf<HTMLButtonElement>;
+
+  let animating = false;
+
+  function animateScroll(target: number, duration: number) {
+    animating = true;
+    const start = track.scrollLeft;
+    const distance = target - start;
+    const t0 = performance.now();
+    function frame(t: number) {
+      const p = Math.min((t - t0) / duration, 1);
+      const e = p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+      track.scrollLeft = start + distance * e;
+      if (p < 1) {
+        requestAnimationFrame(frame);
+      } else {
+        animating = false;
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+
+  function cardW() {
+    const first = track.querySelector('.rev-card') as HTMLElement | null;
+    return first ? first.getBoundingClientRect().width + 16 : 376;
+  }
+
+  function updateBar() {
+    const max = track.scrollWidth - track.clientWidth;
+    const pct = max > 0 ? Math.min(100, (track.scrollLeft / max) * 100) : 0;
+    bar.style.width = Math.max(8, pct) + '%';
+  }
+
+  function slide(dir: number) {
+    if (animating) return;
+    const max = track.scrollWidth - track.clientWidth;
+    let target = track.scrollLeft + dir * cardW();
+    if (dir > 0 && track.scrollLeft >= max - 4) target = 0;
+    else if (dir < 0 && track.scrollLeft <= 4) target = max;
+    else target = Math.max(0, Math.min(max, target));
+    animateScroll(target, 750);
+  }
+
+  arrows.forEach((btn) => {
+    const dir = Number(btn.dataset.dir || '1');
+    btn.addEventListener('click', () => {
+      slide(dir);
+      reset();
+    });
+  });
+
+  track.addEventListener('scroll', updateBar, { passive: true });
+  updateBar();
+
+  let auto = setInterval(() => slide(1), 5000);
+  function reset() {
+    clearInterval(auto);
+    auto = setInterval(() => slide(1), 5000);
+  }
+  track.addEventListener('mouseenter', () => clearInterval(auto));
+  track.addEventListener('mouseleave', reset);
+  track.addEventListener('touchstart', () => clearInterval(auto), { passive: true });
+  track.addEventListener('touchend', reset);
+</script>

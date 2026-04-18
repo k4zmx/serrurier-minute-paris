@@ -1,0 +1,286 @@
+---
+---
+
+<section class="cta" id="contact">
+  <div class="cta-bg" aria-hidden="true">
+    <div class="cta-glow"></div>
+    <div class="cta-grid"></div>
+  </div>
+
+  <div class="cta-inner">
+
+    <span class="cta-label">
+      <span class="cl-mark">§</span>
+      Bloqué ? Pas le temps ?
+    </span>
+
+    <h2 class="cta-h2">
+      Un appel.<br/>
+      <span class="cta-accent">Un serrurier.</span><br/>
+      <span class="cta-italic">30 minutes plus tard.</span>
+    </h2>
+
+    <p class="cta-sub">
+      Un seul interlocuteur pour votre serrurerie.
+      Pas de standard, pas de sous-traitant, pas de surprise sur le devis.
+    </p>
+
+    <a href="tel:+33189706857" class="cta-phone">
+      <span class="cp-left">
+        <span class="cp-ring">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/>
+          </svg>
+        </span>
+        <span class="cp-text">
+          <span class="cp-small">Appel non surtaxé · 24h/24</span>
+          <span class="cp-big">01 89 70 68 57</span>
+        </span>
+      </span>
+      <span class="cp-arrow">→</span>
+    </a>
+
+    <ul class="cta-pills">
+      <li><span class="pill-dot"></span> Intervention 30 min</li>
+      <li><span class="pill-dot"></span> Déplacement 39€</li>
+      <li><span class="pill-dot"></span> Artisan assuré</li>
+      <li><span class="pill-dot"></span> Prix annoncé</li>
+    </ul>
+
+  </div>
+</section>
+
+<style>
+  .cta {
+    background: transparent;
+    padding: clamp(5rem, 10vw, 9rem) 0;
+    position: relative;
+    overflow: hidden;
+    border-top: 1px solid var(--line);
+    z-index: 1;
+  }
+
+  .cta-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .cta-glow {
+    position: absolute;
+    top: -30%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 900px;
+    height: 900px;
+    max-width: 120%;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 65%);
+    filter: blur(80px);
+    opacity: 0.85;
+  }
+
+  .cta-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: radial-gradient(ellipse at 50% 50%, black 10%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at 50% 50%, black 10%, transparent 70%);
+    opacity: 0.4;
+  }
+
+  .cta-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    margin-bottom: 1.5rem;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  .cl-mark {
+    font-family: 'Fraunces', serif;
+    font-weight: 800;
+    font-style: italic;
+    font-size: 18px;
+  }
+
+  .cta-h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 800;
+    font-size: clamp(2.5rem, 9vw, 5.5rem);
+    color: var(--text);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    margin-bottom: 1.5rem;
+  }
+
+  .cta-accent {
+    color: var(--accent);
+  }
+
+  .cta-italic {
+    font-style: italic;
+    font-weight: 700;
+    color: var(--text-muted);
+  }
+
+  .cta-sub {
+    font-size: clamp(0.95rem, 1.3vw, 1.1rem);
+    color: var(--text-muted);
+    line-height: 1.65;
+    max-width: 520px;
+    margin: 0 auto clamp(2rem, 4vw, 3rem);
+  }
+
+  .cta-phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--accent);
+    color: var(--on-accent);
+    padding: 1rem 1.75rem 1rem 1.25rem;
+    border-radius: 16px;
+    text-decoration: none;
+    box-shadow: 0 24px 60px rgba(255,106,26,0.45),
+                0 0 0 1px rgba(255,255,255,0.08) inset;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-phone::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(100deg, transparent 30%, var(--shimmer) 50%, transparent 70%);
+    transform: translateX(-120%);
+    transition: transform 0.8s ease;
+  }
+
+  .cta-phone:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 30px 72px rgba(255,106,26,0.6),
+                0 0 0 1px rgba(255,255,255,0.12) inset;
+  }
+
+  .cta-phone:hover::after {
+    transform: translateX(120%);
+  }
+
+  .cp-left {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  .cp-ring {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.14);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--on-accent);
+    flex-shrink: 0;
+    animation: cp-ring-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes cp-ring-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(0,0,0,0.5); }
+    50% { box-shadow: 0 0 0 12px rgba(0,0,0,0); }
+  }
+
+  .cp-text {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 1.1;
+  }
+
+  .cp-small {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    opacity: 0.75;
+    margin-bottom: 4px;
+  }
+
+  .cp-big {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+    font-weight: 800;
+    letter-spacing: -0.015em;
+  }
+
+  .cp-arrow {
+    font-size: 26px;
+    font-weight: 300;
+    margin-left: 0.3rem;
+    transition: transform 0.3s ease;
+  }
+
+  .cta-phone:hover .cp-arrow {
+    transform: translateX(6px);
+  }
+
+  .cta-pills {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    justify-content: center;
+  }
+
+  .cta-pills li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    padding: 7px 14px;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    background: rgba(255,255,255,0.02);
+  }
+
+  .pill-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  @media (max-width: 640px) {
+    .cta-phone {
+      width: 100%;
+      max-width: 420px;
+      justify-content: space-between;
+      padding: 0.9rem 1.25rem;
+    }
+    .cp-small { font-size: 10px; }
+    .cp-ring { width: 42px; height: 42px; }
+  }
+</style>

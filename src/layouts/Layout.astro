@@ -1,0 +1,307 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+}
+
+const {
+  title = 'Serrurier Minute — Serrurier en urgence 24h/24 · Ouverture de porte · Paris & Île-de-France',
+  description = "Serrurier disponible 24h/24 et 7j/7. Intervention en moins de 30 min, déplacement 39€, prix annoncé à l'avance. Ouverture de porte, changement de serrure, blindage. Appelez le 01 89 70 68 57.",
+  canonical = Astro.url.href,
+  ogImage = '/og-image.jpg',
+} = Astro.props;
+
+const siteName = 'Serrurier Minute';
+const siteUrl = Astro.site?.href ?? 'https://serrurier-minute.fr/';
+const phone = '+33189706857';
+const phoneDisplay = '01 89 70 68 57';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Locksmith',
+  name: siteName,
+  image: new URL(ogImage, siteUrl).href,
+  url: siteUrl,
+  telephone: phone,
+  priceRange: '€€',
+  description,
+  address: {
+    '@type': 'PostalAddress',
+    addressCountry: 'FR',
+    addressRegion: 'Île-de-France',
+    addressLocality: 'Paris',
+  },
+  areaServed: [
+    { '@type': 'City', name: 'Paris' },
+    { '@type': 'AdministrativeArea', name: 'Île-de-France' },
+  ],
+  openingHoursSpecification: [{
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+    opens: '00:00',
+    closes: '23:59',
+  }],
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '4.5',
+    reviewCount: '19',
+    bestRating: '5',
+    worstRating: '1',
+  },
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Services de serrurerie',
+    itemListElement: [
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Ouverture de porte en urgence' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Changement de serrure & cylindre' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Blindage & mise en sécurité' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Artisan local & devis gratuit' } },
+    ],
+  },
+};
+---
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#fafaf7" />
+    <meta name="format-detection" content="telephone=yes" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content="serrurier, serrurier paris, serrurier urgence, ouverture de porte, changement serrure, blindage porte, serrurier 24h, serrurier île-de-france, dépannage serrurerie" />
+    <meta name="author" content={siteName} />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    <meta name="googlebot" content="index, follow" />
+
+    <meta name="geo.region" content="FR-75" />
+    <meta name="geo.placename" content="Paris" />
+    <meta name="geo.position" content="48.8566;2.3522" />
+    <meta name="ICBM" content="48.8566, 2.3522" />
+
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="fr" href={siteUrl} />
+    <link rel="alternate" hreflang="x-default" href={siteUrl} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(ogImage, siteUrl).href} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(ogImage, siteUrl).href} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=3" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.svg?v=3" />
+    <link rel="alternate icon" href="/favicon.ico?v=3" />
+    <link rel="apple-touch-icon" href="/favicon.svg?v=3" />
+    <link rel="mask-icon" href="/favicon.svg?v=3" color="#e85a12" />
+    <link rel="shortcut icon" href="/favicon.svg?v=3" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=Fraunces:ital,wght@0,600;0,800;1,700&display=swap" rel="stylesheet" />
+
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body>
+    <div class="site-bg" aria-hidden="true">
+      <div class="bg-glow bg-glow-1"></div>
+      <div class="bg-glow bg-glow-2"></div>
+      <div class="bg-glow bg-glow-3"></div>
+      <div class="bg-grid"></div>
+    </div>
+
+    <slot />
+
+    <a href={`tel:${phone}`} class="mobile-call-bar" aria-label={`Appeler Serrurier Minute au ${phoneDisplay}`}>
+      <span class="mcb-inner">
+        <span class="mcb-icon-wrap">
+          <span class="mcb-dot"></span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/>
+          </svg>
+        </span>
+        <span class="mcb-text">
+          <span class="mcb-label">Appelez maintenant</span>
+          <span class="mcb-number">{phoneDisplay}</span>
+        </span>
+      </span>
+    </a>
+
+    <style is:global>
+      /* Site-wide decorative bg — fixed, behind everything */
+      .site-bg {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        overflow: hidden;
+      }
+
+      .bg-glow {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(120px);
+      }
+
+      .bg-glow-1 {
+        top: -18vh;
+        left: -10vw;
+        width: 60vw;
+        height: 70vh;
+        background: radial-gradient(circle, rgba(232,90,18,0.18) 0%, transparent 65%);
+      }
+
+      .bg-glow-2 {
+        top: 40vh;
+        right: -15vw;
+        width: 55vw;
+        height: 60vh;
+        background: radial-gradient(circle, rgba(124,58,237,0.10) 0%, transparent 65%);
+      }
+
+      .bg-glow-3 {
+        bottom: -15vh;
+        left: 15vw;
+        width: 55vw;
+        height: 55vh;
+        background: radial-gradient(circle, rgba(232,90,18,0.10) 0%, transparent 65%);
+      }
+
+      .bg-grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(var(--line) 1px, transparent 1px),
+          linear-gradient(90deg, var(--line) 1px, transparent 1px);
+        background-size: 80px 80px;
+        mask-image: radial-gradient(ellipse at 50% 30%, black 10%, transparent 85%);
+        -webkit-mask-image: radial-gradient(ellipse at 50% 30%, black 10%, transparent 85%);
+        opacity: 0.7;
+      }
+
+      @media (max-width: 768px) {
+        .bg-grid { background-size: 48px 48px; }
+      }
+
+      .mobile-call-bar { display: none; }
+
+      @media (max-width: 768px) {
+        .mobile-call-bar {
+          position: fixed;
+          left: 50%;
+          transform: translateX(-50%);
+          bottom: calc(12px + env(safe-area-inset-bottom));
+          background: var(--accent);
+          color: var(--on-accent);
+          text-decoration: none;
+          border-radius: 999px;
+          padding: 8px 16px 8px 8px;
+          z-index: 60;
+          display: inline-flex;
+          align-items: center;
+          width: auto;
+          max-width: calc(100% - 24px);
+          box-shadow:
+            0 18px 40px rgba(232,90,18,0.45),
+            0 0 0 6px rgba(232,90,18,0.12),
+            0 0 0 1px rgba(255,255,255,0.10) inset;
+          animation: mcb-pulse 2.2s ease-in-out infinite;
+        }
+
+        .mcb-inner {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.6rem;
+        }
+
+        .mcb-icon-wrap {
+          position: relative;
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          background: rgba(0,0,0,0.18);
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          color: var(--on-accent);
+          flex-shrink: 0;
+        }
+
+        .mcb-dot {
+          position: absolute;
+          top: -2px;
+          right: -2px;
+          width: 11px;
+          height: 11px;
+          border-radius: 50%;
+          background: #22c55e;
+          border: 2px solid var(--accent);
+          box-shadow: 0 0 8px rgba(34,197,94,0.7);
+          animation: mcb-dot-pulse 1.4s ease-in-out infinite;
+        }
+
+        @keyframes mcb-dot-pulse {
+          0%, 100% { transform: scale(1); opacity: 1; }
+          50% { transform: scale(0.75); opacity: 0.7; }
+        }
+
+        .mcb-text {
+          display: inline-flex;
+          flex-direction: column;
+          align-items: flex-start;
+          line-height: 1.05;
+        }
+
+        .mcb-label {
+          font-family: 'Space Grotesk', sans-serif;
+          font-size: 10px;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.11em;
+          opacity: 0.85;
+          margin-bottom: 2px;
+          white-space: nowrap;
+        }
+
+        .mcb-number {
+          font-family: 'Space Grotesk', sans-serif;
+          font-size: 15px;
+          font-weight: 800;
+          letter-spacing: -0.01em;
+          white-space: nowrap;
+        }
+
+        @keyframes mcb-pulse {
+          0%, 100% {
+            box-shadow:
+              0 18px 40px rgba(232,90,18,0.45),
+              0 0 0 0 rgba(232,90,18,0.45),
+              0 0 0 1px rgba(255,255,255,0.10) inset;
+          }
+          50% {
+            box-shadow:
+              0 18px 40px rgba(232,90,18,0.45),
+              0 0 0 10px rgba(232,90,18,0),
+              0 0 0 1px rgba(255,255,255,0.10) inset;
+          }
+        }
+      }
+    </style>
+  </body>
+</html>

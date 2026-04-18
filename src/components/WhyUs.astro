@@ -1,0 +1,454 @@
+---
+const items = [
+  {
+    num: '01',
+    title: "Intervention en 30 minutes",
+    body: "Artisan local géolocalisé, disponible 24h/24 et 7j/7. On part dès votre appel — pas de standard, pas d'attente.",
+  },
+  {
+    num: '02',
+    title: "Prix annoncé avant intervention",
+    body: "Déplacement 39€. Diagnostic clair sur place. Devis expliqué. On ne touche à rien avant votre accord.",
+  },
+  {
+    num: '03',
+    title: "Serrurier qualifié et assuré",
+    body: "Artisan certifié avec assurance responsabilité civile professionnelle incluse sur chaque intervention.",
+  },
+  {
+    num: '04',
+    title: "Remboursement assurance habitation",
+    body: "Jusqu'à 100 % selon votre contrat. On vous fournit tous les justificatifs nécessaires pour votre dossier.",
+  },
+];
+---
+
+<section class="whyus" id="apropos" aria-labelledby="whyus-heading">
+  <div class="whyus-inner">
+
+    <aside class="whyus-visual">
+      <div class="wv-card">
+        <img src="/whyus.webp" alt="Serrurier installant une serrure A2P à Paris" width="800" height="900" loading="lazy"/>
+        <div class="wv-overlay"></div>
+        <div class="wv-badge">
+          <span class="wv-badge-kicker">Depuis 2012</span>
+          <span class="wv-badge-title">Artisan serrurier<br/>local & certifié</span>
+          <span class="wv-badge-meta">
+            <span class="wv-dot"></span>
+            Paris · 92 · 93 · 94
+          </span>
+        </div>
+      </div>
+    </aside>
+
+    <div class="whyus-content">
+      <div class="whyus-head">
+        <span class="whyus-label">
+          <span class="wl-mark">§</span>
+          Pourquoi nous choisir
+        </span>
+        <h2 class="whyus-h2" id="whyus-heading">
+          Un serrurier qui <em>respecte</em> votre porte,
+          votre temps et votre budget.
+        </h2>
+      </div>
+
+      <div class="whyus-list" role="list">
+        {items.map((item, i) => (
+          <div class="whyus-item" role="listitem" data-idx={i}>
+            <button class="item-head" aria-expanded="false" aria-controls={`whyus-body-${i}`} type="button">
+              <span class="item-num">{item.num}</span>
+              <span class="item-title">{item.title}</span>
+              <span class="item-toggle" aria-hidden="true">
+                <span class="toggle-bar toggle-bar--h"></span>
+                <span class="toggle-bar toggle-bar--v"></span>
+              </span>
+            </button>
+            <div id={`whyus-body-${i}`} class="item-body-wrap" aria-hidden="true">
+              <div class="item-body">
+                <p>{item.body}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .whyus {
+    background: transparent;
+    padding: clamp(3.5rem, 7vw, 6rem) 0;
+    border-top: 1px solid var(--line);
+    position: relative;
+    z-index: 1;
+  }
+
+  .whyus-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: start;
+  }
+
+  /* Visual column */
+  .whyus-visual {
+    position: sticky;
+    top: 120px;
+  }
+
+  .wv-card {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    border-radius: 24px;
+    overflow: hidden;
+    background: var(--bg-2);
+    box-shadow:
+      0 40px 80px rgba(0,0,0,0.10),
+      0 0 0 1px var(--line);
+    transform: rotate(-0.8deg);
+    transition: transform 0.6s cubic-bezier(.2,.8,.2,1);
+  }
+
+  .wv-card:hover { transform: rotate(0deg) scale(1.01); }
+
+  .wv-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .wv-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, transparent 40%, rgba(10,10,11,0.70) 100%),
+      linear-gradient(200deg, rgba(232,90,18,0.18) 0%, transparent 40%);
+    pointer-events: none;
+  }
+
+  .wv-badge {
+    position: absolute;
+    left: 18px;
+    right: 18px;
+    bottom: 18px;
+    background: rgba(10,10,11,0.80);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255,255,255,0.16);
+    padding: 1rem 1.1rem;
+    border-radius: 16px;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .wv-badge-kicker {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: #ff9852;
+  }
+
+  .wv-badge-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: clamp(1.15rem, 2vw, 1.45rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+
+  .wv-badge-meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.72);
+    letter-spacing: 0.04em;
+    margin-top: 0.35rem;
+  }
+
+  .wv-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 8px rgba(34,197,94,0.5);
+    animation: pulse-dot-wv 1.8s ease-in-out infinite;
+  }
+
+  @keyframes pulse-dot-wv {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  /* Content column */
+  .whyus-content { min-width: 0; }
+
+  .whyus-head {
+    margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+  }
+
+  .whyus-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    margin-bottom: 1.25rem;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  .wl-mark {
+    font-family: 'Fraunces', serif;
+    font-weight: 800;
+    font-style: italic;
+    font-size: 18px;
+    line-height: 1;
+  }
+
+  .whyus-h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 800;
+    font-size: clamp(1.7rem, 3vw, 2.6rem);
+    color: var(--text);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+  }
+
+  .whyus-h2 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  /* Accordion */
+  .whyus-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .whyus-item {
+    border-top: 1px solid var(--line);
+    position: relative;
+    transition: transform 0.6s cubic-bezier(.2,.8,.2,1), opacity 0.6s ease;
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  .whyus-item:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .whyus-item.is-inview {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .whyus-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 2px;
+    width: 0;
+    background: var(--accent);
+    transition: width 0.6s cubic-bezier(.2,.8,.2,1);
+  }
+
+  .whyus-item.is-open::before { width: 100%; }
+
+  .item-head {
+    all: unset;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 56px 1fr auto;
+    gap: 1rem;
+    width: 100%;
+    padding: 1.5rem 0;
+    cursor: pointer;
+    align-items: center;
+    transition: padding-left 0.3s ease;
+  }
+
+  .item-head:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+    border-radius: 4px;
+  }
+
+  .whyus-item.is-open .item-head { padding-left: 0.5rem; }
+
+  .item-num {
+    font-family: 'Fraunces', serif;
+    font-weight: 800;
+    font-style: italic;
+    font-size: clamp(1.6rem, 3vw, 2.1rem);
+    color: var(--text);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    transition: color 0.3s ease;
+  }
+
+  .whyus-item.is-open .item-num { color: var(--accent); }
+
+  .item-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1rem, 1.6vw, 1.25rem);
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.01em;
+    text-align: left;
+  }
+
+  .item-toggle {
+    position: relative;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--line-strong);
+    background: transparent;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.3s ease, border-color 0.3s ease;
+  }
+
+  .whyus-item.is-open .item-toggle {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .toggle-bar {
+    position: absolute;
+    background: var(--text);
+    border-radius: 2px;
+    transition: transform 0.35s cubic-bezier(.2,.8,.2,1), background 0.3s ease;
+  }
+
+  .toggle-bar--h {
+    width: 12px;
+    height: 2px;
+  }
+
+  .toggle-bar--v {
+    width: 2px;
+    height: 12px;
+  }
+
+  .whyus-item.is-open .toggle-bar {
+    background: var(--on-accent);
+  }
+
+  .whyus-item.is-open .toggle-bar--v {
+    transform: rotate(90deg) scaleX(0);
+  }
+
+  .item-body-wrap {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.55s cubic-bezier(.2,.8,.2,1);
+  }
+
+  .whyus-item.is-open .item-body-wrap {
+    grid-template-rows: 1fr;
+  }
+
+  .item-body {
+    overflow: hidden;
+    padding-left: 56px + 1rem;
+  }
+
+  .item-body > p {
+    max-width: 58ch;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    padding: 0 3rem 1.75rem 72px;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity 0.4s ease 0.15s, transform 0.5s cubic-bezier(.2,.8,.2,1) 0.15s;
+  }
+
+  .whyus-item.is-open .item-body > p {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 900px) {
+    .whyus-inner { grid-template-columns: 1fr; }
+    .whyus-visual { position: static; max-width: 520px; margin: 0 auto 1rem; width: 100%; }
+    .wv-card { transform: rotate(0deg); }
+  }
+
+  @media (max-width: 640px) {
+    .item-head {
+      grid-template-columns: 42px 1fr auto;
+      gap: 0.85rem;
+      padding: 1.25rem 0;
+    }
+    .item-num { font-size: 1.5rem; }
+    .item-toggle { width: 32px; height: 32px; }
+    .toggle-bar--h { width: 10px; }
+    .toggle-bar--v { height: 10px; }
+    .item-body > p {
+      padding: 0 0 1.25rem 58px;
+      font-size: 0.9rem;
+    }
+    .wv-card { aspect-ratio: 4 / 3; }
+    .whyus-item.is-open .item-head { padding-left: 0; }
+  }
+</style>
+
+<script>
+  const section = document.getElementById('apropos') as HTMLElement | null;
+  if (section) {
+    const items = Array.from(section.querySelectorAll<HTMLElement>('.whyus-item'));
+    const heads = Array.from(section.querySelectorAll<HTMLButtonElement>('.item-head'));
+
+    // Click to toggle
+    heads.forEach((head, i) => {
+      head.addEventListener('click', () => {
+        const item = items[i];
+        const open = item.classList.toggle('is-open');
+        head.setAttribute('aria-expanded', String(open));
+        const body = item.querySelector('.item-body-wrap') as HTMLElement | null;
+        if (body) body.setAttribute('aria-hidden', String(!open));
+      });
+    });
+
+    // Auto-reveal + stagger auto-open on viewport enter
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        const item = e.target as HTMLElement;
+        const idx = Number(item.dataset.idx || 0);
+        item.classList.add('is-inview');
+        const head = item.querySelector('.item-head') as HTMLButtonElement | null;
+        const body = item.querySelector('.item-body-wrap') as HTMLElement | null;
+        window.setTimeout(() => {
+          item.classList.add('is-open');
+          head?.setAttribute('aria-expanded', 'true');
+          body?.setAttribute('aria-hidden', 'false');
+        }, 220 + idx * 160);
+        io.unobserve(item);
+      });
+    }, { threshold: 0.25, rootMargin: '0px 0px -10% 0px' });
+
+    items.forEach((it) => io.observe(it));
+  }
+</script>

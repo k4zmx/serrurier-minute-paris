@@ -1,0 +1,273 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+
+  <div class="footer-main">
+
+    <div class="ft-brand">
+      <a href="/" class="ft-logo" aria-label="Serrurier Minute — Accueil">
+        <span class="ft-logo-pill">
+          <img src="/logo.png" alt="Serrurier Minute" width="150" height="44" loading="lazy"/>
+        </span>
+      </a>
+      <p class="ft-tag">
+        Serrurier d'urgence à Paris & Île-de-France.
+        Disponible 24h/24, 7j/7. Intervention en 30 minutes.
+      </p>
+      <a href="tel:+33189706857" class="ft-phone-cta">
+        <span class="fpc-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/>
+          </svg>
+        </span>
+        <span class="fpc-text">
+          <span class="fpc-label">
+            <span class="fpc-dot"></span>
+            Urgence · Appel non surtaxé
+          </span>
+          <span class="fpc-number">01 89 70 68 57</span>
+        </span>
+      </a>
+    </div>
+
+    <nav class="ft-nav" aria-label="Entreprise">
+      <span class="ft-nav-title">Entreprise</span>
+      <ul>
+        <li><a href="#apropos">À propos</a></li>
+        <li><a href="#avis">Avis clients</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+  </div>
+
+  <div class="footer-bar">
+    <span class="ft-copy">© {year} Serrurier Minute — Tous droits réservés</span>
+    <div class="ft-legal">
+      <a href="/mentions-legales">Mentions légales</a>
+      <span class="ft-sep" aria-hidden="true">·</span>
+      <a href="/confidentialite">Confidentialité</a>
+      <span class="ft-sep" aria-hidden="true">·</span>
+      <a href="/cgv">CGV</a>
+    </div>
+  </div>
+
+</footer>
+
+<style>
+  .footer {
+    background: var(--bg-2);
+    border-top: 1px solid var(--line);
+    color: var(--text-muted);
+    position: relative;
+    z-index: 1;
+  }
+
+  .footer-main {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: clamp(3rem, 6vw, 4.5rem) 1.5rem clamp(2.5rem, 5vw, 3.5rem);
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: clamp(2.5rem, 6vw, 5rem);
+    align-items: start;
+  }
+
+  .ft-logo {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    margin-bottom: 1.25rem;
+  }
+
+  .ft-logo-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ft-logo-pill img {
+    height: 36px;
+    width: auto;
+    display: block;
+  }
+
+  .ft-tag {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    max-width: 420px;
+    margin-bottom: 1.5rem;
+  }
+
+  .ft-phone-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.85rem 1.1rem;
+    background: var(--bg);
+    border: 1px solid var(--line-strong);
+    border-radius: 14px;
+    text-decoration: none;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .ft-phone-cta:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .fpc-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    background: var(--accent);
+    color: var(--on-accent);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .fpc-text {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .fpc-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    white-space: nowrap;
+  }
+
+  .fpc-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 6px var(--accent);
+    animation: fpc-pulse 1.8s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+
+  @keyframes fpc-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.85); }
+  }
+
+  .fpc-number {
+    font-family: 'Fraunces', serif;
+    font-weight: 800;
+    font-style: italic;
+    font-size: clamp(1.35rem, 3vw, 1.7rem);
+    color: var(--text);
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  /* Nav */
+  .ft-nav {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ft-nav-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 10.5px;
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    margin-bottom: 1.1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .ft-nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .ft-nav a {
+    font-size: 14px;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s ease, padding-left 0.2s ease;
+    display: inline-block;
+  }
+
+  .ft-nav a:hover {
+    color: var(--accent);
+    padding-left: 4px;
+  }
+
+  /* Bottom bar */
+  .footer-bar {
+    border-top: 1px solid var(--line);
+    padding: 1.1rem 1.5rem;
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    background: var(--bg);
+  }
+
+  .ft-copy {
+    font-size: 12px;
+    color: var(--text-dim);
+  }
+
+  .ft-legal {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    flex-wrap: wrap;
+  }
+
+  .ft-legal a {
+    font-size: 12px;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .ft-legal a:hover { color: var(--text); }
+  .ft-sep { color: var(--text-dim); }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .footer-main {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .footer-main {
+      padding: 2.5rem 1.25rem 2rem;
+    }
+    .footer-bar {
+      flex-direction: column;
+      gap: 0.75rem;
+      text-align: center;
+      padding: 1rem 1.25rem 1.25rem;
+    }
+    .ft-legal { justify-content: center; }
+  }
+</style>

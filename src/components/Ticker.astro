@@ -1,0 +1,134 @@
+---
+const signals = [
+  { loc: "Paris 11e", act: "Ouverture de porte", time: "il y a 4 min" },
+  { loc: "Boulogne", act: "Cylindre remplacé", time: "il y a 12 min" },
+  { loc: "Paris 18e", act: "Clé cassée extraite", time: "il y a 22 min" },
+  { loc: "Neuilly", act: "Serrure A2P posée", time: "il y a 38 min" },
+  { loc: "Paris 15e", act: "Ouverture sans dégât", time: "il y a 51 min" },
+  { loc: "Saint-Denis", act: "Blindage mis en sécurité", time: "il y a 1h" },
+  { loc: "Paris 9e", act: "Dépannage urgence", time: "il y a 1h 12" },
+  { loc: "Vincennes", act: "Serrure 3 points", time: "il y a 1h 28" },
+];
+// duplicate for seamless loop
+const loop = [...signals, ...signals];
+---
+
+<div class="ticker" aria-label="Dernières interventions">
+  <div class="ticker-label">
+    <span class="tl-dot"></span>
+    <span>En direct</span>
+  </div>
+  <div class="ticker-track">
+    <div class="ticker-row">
+      {loop.map((s) => (
+        <span class="ticker-item">
+          <span class="ti-loc">{s.loc}</span>
+          <span class="ti-sep">—</span>
+          <span class="ti-act">{s.act}</span>
+          <span class="ti-time">{s.time}</span>
+        </span>
+      ))}
+    </div>
+  </div>
+</div>
+
+<style>
+  .ticker {
+    display: flex;
+    align-items: stretch;
+    background: var(--bg-2);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    font-family: 'Space Grotesk', sans-serif;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+  }
+
+  .ticker-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.75rem 1rem;
+    background: var(--accent);
+    color: var(--on-accent);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    flex-shrink: 0;
+  }
+
+  .tl-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--on-accent);
+    animation: pulse-dot-k 1.4s ease-in-out infinite;
+  }
+
+  @keyframes pulse-dot-k {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .ticker-track {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+    mask-image: linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%);
+  }
+
+  .ticker-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 2.5rem;
+    padding: 0 2rem;
+    animation: ticker-scroll 48s linear infinite;
+    white-space: nowrap;
+    height: 100%;
+  }
+
+  @keyframes ticker-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .ticker:hover .ticker-row { animation-play-state: paused; }
+
+  .ticker-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  .ti-loc {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .ti-sep {
+    color: var(--text-dim);
+  }
+
+  .ti-act {
+    color: var(--text-muted);
+  }
+
+  .ti-time {
+    color: var(--text-dim);
+    font-size: 12px;
+    padding-left: 0.5rem;
+    border-left: 1px solid var(--line);
+    margin-left: 0.25rem;
+  }
+
+  @media (max-width: 640px) {
+    .ticker-label { padding: 0.65rem 0.75rem; font-size: 10px; letter-spacing: 0.1em; }
+    .ticker-item { font-size: 12px; gap: 0.4rem; }
+    .ticker-row { gap: 1.75rem; padding: 0 1rem; }
+  }
+</style>
