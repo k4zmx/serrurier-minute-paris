@@ -451,26 +451,6 @@ const reviews = [
   const bar = document.getElementById('reviews-bar') as HTMLElement;
   const arrows = document.querySelectorAll('.rc-arrow') as NodeListOf<HTMLButtonElement>;
 
-  let animating = false;
-
-  function animateScroll(target: number, duration: number) {
-    animating = true;
-    const start = track.scrollLeft;
-    const distance = target - start;
-    const t0 = performance.now();
-    function frame(t: number) {
-      const p = Math.min((t - t0) / duration, 1);
-      const e = p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
-      track.scrollLeft = start + distance * e;
-      if (p < 1) {
-        requestAnimationFrame(frame);
-      } else {
-        animating = false;
-      }
-    }
-    requestAnimationFrame(frame);
-  }
-
   function cardW() {
     const first = track.querySelector('.rev-card') as HTMLElement | null;
     return first ? first.getBoundingClientRect().width + 16 : 376;
@@ -483,13 +463,12 @@ const reviews = [
   }
 
   function slide(dir: number) {
-    if (animating) return;
     const max = track.scrollWidth - track.clientWidth;
     let target = track.scrollLeft + dir * cardW();
     if (dir > 0 && track.scrollLeft >= max - 4) target = 0;
     else if (dir < 0 && track.scrollLeft <= 4) target = max;
     else target = Math.max(0, Math.min(max, target));
-    animateScroll(target, 750);
+    track.scrollTo({ left: target, behavior: 'smooth' });
   }
 
   arrows.forEach((btn) => {
