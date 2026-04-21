@@ -1,6 +1,6 @@
 ---
 import { Picture } from 'astro:assets';
-import heroImg from '../assets/herobg.jpg';
+import heroImg from '../assets/hero2bg.jpg';
 ---
 
 <section class="hero" id="hero">
@@ -16,7 +16,7 @@ import heroImg from '../assets/herobg.jpg';
     <div class="hero-meta">
       <span class="meta-tag">
         <span class="meta-dot"></span>
-        Serrurier · Paris & IDF
+        Serrurier · Paris & IDF uniquement
       </span>
       <span class="meta-date" id="hero-date"></span>
     </div>
@@ -35,10 +35,29 @@ import heroImg from '../assets/herobg.jpg';
         </h1>
 
         <p class="hero-sub">
-          Serrurier d'urgence <em>à Paris et en Île-de-France</em>,
+          Serrurier d'urgence <em>uniquement à Paris et en Île-de-France</em>,
           disponible 24h/24 et 7j/7. Ouverture de porte sans dégâts,
           prix annoncé avant intervention.
         </p>
+
+        <div class="hero-zone" aria-label="Zone d'intervention">
+          <span class="hz-pin" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+          </span>
+          <span class="hz-text">
+            <span class="hz-label">Zone d'intervention</span>
+            <span class="hz-areas">
+              <span class="hz-chip hz-chip--primary">Paris 1<sup>er</sup>–20<sup>e</sup></span>
+              <span class="hz-chip">Hauts-de-Seine <b>92</b></span>
+              <span class="hz-chip">Seine-Saint-Denis <b>93</b></span>
+              <span class="hz-chip">Val-de-Marne <b>94</b></span>
+            </span>
+            <span class="hz-warning">Nous n'intervenons pas hors Île-de-France.</span>
+          </span>
+        </div>
 
         <div class="hero-ctas">
           <a href="tel:+33189706857" class="cta-main">
@@ -266,6 +285,109 @@ import heroImg from '../assets/herobg.jpg';
     font-weight: 600;
     background: linear-gradient(transparent 65%, var(--accent-glow) 65%);
     padding: 0 2px;
+  }
+
+  /* Zone callout — prominent, scannable */
+  .hero-zone {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+    background: var(--bg-2);
+    border: 1px solid var(--line-strong);
+    border-radius: 16px;
+    padding: 0.9rem 1rem;
+    margin-bottom: clamp(1.25rem, 2.5vw, 1.75rem);
+    position: relative;
+  }
+
+  .hero-zone::before {
+    content: '';
+    position: absolute;
+    left: -1px;
+    top: 10%;
+    bottom: 10%;
+    width: 3px;
+    background: var(--accent);
+    border-radius: 4px;
+  }
+
+  .hz-pin {
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    background: var(--accent);
+    color: var(--on-accent);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+  }
+
+  .hz-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    min-width: 0;
+  }
+
+  .hz-label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 10.5px;
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+  }
+
+  .hz-areas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    align-items: center;
+  }
+
+  .hz-chip {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text);
+    background: var(--bg-3);
+    border: 1px solid var(--line);
+    padding: 4px 9px;
+    border-radius: 999px;
+    white-space: nowrap;
+    line-height: 1.2;
+  }
+
+  .hz-chip b {
+    color: var(--accent);
+    font-weight: 800;
+    margin-left: 2px;
+    letter-spacing: 0.02em;
+  }
+
+  .hz-chip sup {
+    font-size: 0.7em;
+    font-weight: 600;
+  }
+
+  .hz-chip--primary {
+    background: var(--accent);
+    color: var(--on-accent);
+    border-color: var(--accent);
+    font-weight: 700;
+  }
+
+  .hz-chip--primary sup { color: var(--on-accent); }
+
+  .hz-warning {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11.5px;
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-top: 0.1rem;
+    font-style: italic;
   }
 
   .hero-ctas {
@@ -537,6 +659,14 @@ import heroImg from '../assets/herobg.jpg';
     .hero-inner { padding: 0 1.25rem; }
     .meta-date { font-size: 11px; }
     .meta-tag { font-size: 11px; letter-spacing: 0.1em; }
+
+    .hero-zone {
+      gap: 0.7rem;
+      padding: 0.75rem 0.85rem;
+    }
+    .hz-pin { width: 30px; height: 30px; }
+    .hz-chip { font-size: 11.5px; padding: 3px 8px; }
+    .hz-warning { font-size: 11px; }
 
     .hero-ctas { flex-direction: column; align-items: stretch; }
     .cta-main, .cta-ghost { justify-content: center; width: 100%; }
