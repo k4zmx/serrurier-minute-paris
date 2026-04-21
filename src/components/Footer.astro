@@ -41,6 +41,36 @@ const year = new Date().getFullYear();
       </ul>
     </nav>
 
+    <nav class="ft-zones" aria-label="Zones d'intervention">
+      <span class="ft-nav-title">Zones desservies</span>
+      <ul class="ft-zones-list">
+        <li class="ft-zone-group">
+          <span class="ft-zone-dep">Paris (75)</span>
+          <span class="ft-zone-cities">
+            1<sup>er</sup>, 2<sup>e</sup>, 3<sup>e</sup>, 4<sup>e</sup>, 5<sup>e</sup>, 6<sup>e</sup>, 7<sup>e</sup>, 8<sup>e</sup>, 9<sup>e</sup>, 10<sup>e</sup>, 11<sup>e</sup>, 12<sup>e</sup>, 13<sup>e</sup>, 14<sup>e</sup>, 15<sup>e</sup>, 16<sup>e</sup>, 17<sup>e</sup>, 18<sup>e</sup>, 19<sup>e</sup>, 20<sup>e</sup> arrondissement
+          </span>
+        </li>
+        <li class="ft-zone-group">
+          <span class="ft-zone-dep">Hauts-de-Seine (92)</span>
+          <span class="ft-zone-cities">
+            Boulogne-Billancourt · Neuilly-sur-Seine · Levallois-Perret · Issy-les-Moulineaux · Nanterre · Courbevoie · Clichy · Puteaux · Asnières · Colombes · Rueil-Malmaison · Montrouge · Suresnes
+          </span>
+        </li>
+        <li class="ft-zone-group">
+          <span class="ft-zone-dep">Seine-Saint-Denis (93)</span>
+          <span class="ft-zone-cities">
+            Saint-Denis · Montreuil · Aubervilliers · Bobigny · Pantin · Saint-Ouen · Aulnay-sous-Bois · Drancy · Bondy · Noisy-le-Grand · Le Blanc-Mesnil
+          </span>
+        </li>
+        <li class="ft-zone-group">
+          <span class="ft-zone-dep">Val-de-Marne (94)</span>
+          <span class="ft-zone-cities">
+            Créteil · Vincennes · Maisons-Alfort · Saint-Maur-des-Fossés · Ivry-sur-Seine · Vitry-sur-Seine · Charenton · Champigny · Fontenay-sous-Bois · Nogent-sur-Marne · Cachan
+          </span>
+        </li>
+      </ul>
+    </nav>
+
   </div>
 
   <div class="footer-bar">
@@ -70,8 +100,8 @@ const year = new Date().getFullYear();
     margin: 0 auto;
     padding: clamp(3rem, 6vw, 4.5rem) 1.5rem clamp(2.5rem, 5vw, 3.5rem);
     display: grid;
-    grid-template-columns: 1.3fr 1fr;
-    gap: clamp(2.5rem, 6vw, 5rem);
+    grid-template-columns: 1.2fr 0.8fr 1.6fr;
+    gap: clamp(2rem, 4vw, 3rem);
     align-items: start;
   }
 
@@ -214,6 +244,46 @@ const year = new Date().getFullYear();
     padding-left: 4px;
   }
 
+  /* Zones */
+  .ft-zones {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ft-zones-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+
+  .ft-zone-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .ft-zone-dep {
+    font-family: 'Inter Variable', 'Inter', sans-serif;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: 0.01em;
+  }
+
+  .ft-zone-cities {
+    font-size: 12px;
+    color: var(--text-dim);
+    line-height: 1.55;
+    letter-spacing: 0.005em;
+  }
+
+  .ft-zone-cities sup {
+    font-size: 0.75em;
+    opacity: 0.8;
+  }
+
   /* Bottom bar */
   .footer-bar {
     border-top: 1px solid var(--line);
@@ -251,17 +321,21 @@ const year = new Date().getFullYear();
   .ft-sep { color: var(--text-dim); }
 
   /* Responsive */
-  @media (max-width: 900px) {
+  @media (max-width: 1024px) {
     .footer-main {
-      grid-template-columns: 1fr;
+      grid-template-columns: 1fr 1fr;
       gap: 2.5rem;
     }
+    .ft-brand { grid-column: 1 / -1; }
   }
 
   @media (max-width: 640px) {
     .footer-main {
+      grid-template-columns: 1fr;
       padding: 2.5rem 1.25rem 2rem;
+      gap: 2rem;
     }
+    .ft-brand { grid-column: auto; }
     .footer-bar {
       flex-direction: column;
       gap: 0.75rem;
