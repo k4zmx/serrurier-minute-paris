@@ -1,4 +1,7 @@
 ---
+import { Picture } from 'astro:assets';
+import whyusImg from '../assets/whyus.webp';
+
 const items = [
   {
     num: '01',
@@ -28,7 +31,16 @@ const items = [
 
     <aside class="whyus-visual">
       <div class="wv-card">
-        <img src="/whyus.webp" alt="Serrurier installant une serrure A2P à Paris" width="800" height="1000" loading="lazy" decoding="async"/>
+        <Picture
+          src={whyusImg}
+          alt="Serrurier installant une serrure A2P à Paris"
+          formats={['avif']}
+          fallbackFormat="webp"
+          widths={[320, 480, 640, 800]}
+          sizes="(max-width: 900px) 90vw, 40vw"
+          loading="lazy"
+          decoding="async"
+        />
         <div class="wv-overlay"></div>
         <div class="wv-badge">
           <span class="wv-badge-kicker">Depuis 2012</span>
@@ -119,11 +131,15 @@ const items = [
 
   .wv-card:hover { transform: rotate(0deg) scale(1.01); }
 
-  .wv-card img {
+  .wv-card :global(picture),
+  .wv-card :global(img) {
     width: 100%;
     height: 100%;
-    object-fit: cover;
     display: block;
+  }
+
+  .wv-card :global(img) {
+    object-fit: cover;
   }
 
   .wv-overlay {

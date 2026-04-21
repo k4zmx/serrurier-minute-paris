@@ -1,6 +1,5 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
@@ -12,8 +11,8 @@ export default defineConfig({
       priority: 0.8,
     }),
   ],
-  vite: { plugins: [tailwindcss()] },
   build: { inlineStylesheets: 'auto' },
   compressHTML: true,
   prefetch: { prefetchAll: true, defaultStrategy: 'viewport' },
+  image: { service: { entrypoint: 'astro/assets/services/sharp' } },
 });

@@ -1,4 +1,7 @@
 ---
+import '@fontsource-variable/space-grotesk';
+import '@fontsource-variable/fraunces';
+import '@fontsource-variable/fraunces/wght-italic.css';
 import '../styles/global.css';
 
 interface Props {
@@ -110,11 +113,7 @@ const jsonLd = {
     <link rel="mask-icon" href="/favicon.svg?v=3" color="#e85a12" />
     <link rel="shortcut icon" href="/favicon.svg?v=3" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" as="image" href="/herobg.jpg" fetchpriority="high" />
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Fraunces:ital,wght@0,800;1,700&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Fraunces:ital,wght@0,800;1,700&display=swap" />
+    <!-- Fonts are self-hosted via @fontsource — no external roundtrips -->
 
     <link rel="sitemap" href="/sitemap-index.xml" />
 

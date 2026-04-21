@@ -1,4 +1,6 @@
 ---
+import { Picture } from 'astro:assets';
+import heroImg from '../assets/herobg.jpg';
 ---
 
 <section class="hero" id="hero">
@@ -61,7 +63,17 @@
       <div class="hero-visual" aria-hidden="true">
         <div class="hv-card">
           <div class="hv-img-wrap">
-            <img src="/herobg.jpg" alt="Serrurier remplaçant un cylindre de serrure" width="800" height="640" loading="eager" fetchpriority="high" decoding="async"/>
+            <Picture
+              src={heroImg}
+              alt="Serrurier remplaçant un cylindre de serrure à Paris"
+              formats={['avif', 'webp']}
+              widths={[400, 600, 800, 1000]}
+              sizes="(max-width: 900px) 100vw, 45vw"
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+              class="hero-pic"
+            />
             <div class="hv-overlay"></div>
             <span class="hv-chip hv-chip-top">
               <span class="hv-dot"></span>
@@ -387,11 +399,15 @@
     overflow: hidden;
   }
 
-  .hv-img-wrap img {
+  .hv-img-wrap :global(picture),
+  .hv-img-wrap :global(img) {
     width: 100%;
     height: 100%;
-    object-fit: cover;
     display: block;
+  }
+
+  .hv-img-wrap :global(img) {
+    object-fit: cover;
   }
 
   .hv-overlay {
