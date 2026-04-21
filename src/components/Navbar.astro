@@ -26,13 +26,15 @@ const currentPath = Astro.url.pathname;
 
   </div>
 
-  <div class="drawer" id="navbar-drawer">
-    <ul class="drawer-links">
-      <li><a href="/">Accueil</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#apropos">À propos</a></li>
-      <li><a href="#avis">Avis</a></li>
-    </ul>
+  <div class="drawer" id="navbar-drawer" data-open="false">
+    <div class="drawer-inner">
+      <ul class="drawer-links">
+        <li><a href="/">Accueil</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#apropos">À propos</a></li>
+        <li><a href="#avis">Avis</a></li>
+      </ul>
+    </div>
   </div>
 </nav>
 
@@ -172,16 +174,26 @@ const currentPath = Astro.url.pathname;
   }
 
   .drawer {
-    overflow: hidden;
-    height: 0;
-    transition: height 0.3s ease;
+    display: grid;
+    grid-template-rows: 0fr;
     background: var(--bg-2);
+    transition: grid-template-rows 0.28s cubic-bezier(.2,.8,.2,1);
+    will-change: grid-template-rows;
+  }
+
+  .drawer[data-open="true"] {
+    grid-template-rows: 1fr;
     border-bottom: 1px solid var(--line);
+  }
+
+  .drawer-inner {
+    overflow: hidden;
+    min-height: 0;
   }
 
   .drawer-links {
     list-style: none;
-    padding: 0.5rem 0;
+    padding: 0.25rem 0;
   }
 
   .drawer-links li a {
@@ -190,15 +202,15 @@ const currentPath = Astro.url.pathname;
     font-weight: 600;
     color: var(--text);
     text-decoration: none;
-    padding: 1rem 1.5rem;
+    padding: 0.95rem 1.5rem;
     border-bottom: 1px solid var(--line);
-    transition: background 0.15s ease, color 0.15s ease;
+    transition: color 0.15s ease;
+    -webkit-tap-highlight-color: rgba(232,90,18,0.12);
   }
 
-  .drawer-links li a:hover {
-    background: var(--bg-3);
-    color: var(--accent);
-  }
+  .drawer-links li:last-child a { border-bottom: none; }
+
+  .drawer-links li a:active { color: var(--accent); }
 
   @media (max-width: 900px) {
     .links { display: none; }
@@ -218,29 +230,17 @@ const currentPath = Astro.url.pathname;
   const burger = document.querySelector('.burger') as HTMLButtonElement;
   const drawer = document.getElementById('navbar-drawer') as HTMLElement;
 
-  function openDrawer() {
-    drawer.style.height = drawer.scrollHeight + 'px';
-    drawer.addEventListener('transitionend', () => {
-      if (drawer.style.height !== '0px') drawer.style.height = 'auto';
-    }, { once: true });
-    burger.classList.add('is-open');
-    burger.setAttribute('aria-expanded', 'true');
-  }
-
-  function closeDrawer() {
-    drawer.style.height = drawer.scrollHeight + 'px';
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => { drawer.style.height = '0px'; });
-    });
-    burger.classList.remove('is-open');
-    burger.setAttribute('aria-expanded', 'false');
+  function setOpen(open: boolean) {
+    drawer.setAttribute('data-open', String(open));
+    burger.classList.toggle('is-open', open);
+    burger.setAttribute('aria-expanded', String(open));
   }
 
   burger?.addEventListener('click', () => {
-    drawer.style.height === '0px' || drawer.style.height === '' ? openDrawer() : closeDrawer();
+    setOpen(drawer.getAttribute('data-open') !== 'true');
   });
 
   drawer?.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => closeDrawer());
+    link.addEventListener('click', () => setOpen(false));
   });
 </script>
