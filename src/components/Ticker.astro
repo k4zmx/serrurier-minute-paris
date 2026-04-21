@@ -129,6 +129,10 @@ const loop = [...signals, ...signals];
   @media (max-width: 640px) {
     .ticker-label { padding: 0.65rem 0.75rem; font-size: 10px; letter-spacing: 0.1em; }
     .ticker-item { font-size: 12px; gap: 0.4rem; }
-    .ticker-row { gap: 1.75rem; padding: 0 1rem; }
+    .ticker-row { gap: 1.75rem; padding: 0 1rem; animation-duration: 80s; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ticker-row { animation: none; }
   }
 </style>

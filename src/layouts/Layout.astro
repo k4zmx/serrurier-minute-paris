@@ -112,7 +112,9 @@ const jsonLd = {
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=Fraunces:ital,wght@0,600;0,800;1,700&display=swap" rel="stylesheet" />
+    <link rel="preload" as="image" href="/herobg.jpg" fetchpriority="high" />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Fraunces:ital,wght@0,800;1,700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Fraunces:ital,wght@0,800;1,700&display=swap" />
 
     <link rel="sitemap" href="/sitemap-index.xml" />
 
@@ -151,35 +153,37 @@ const jsonLd = {
         z-index: 0;
         pointer-events: none;
         overflow: hidden;
+        contain: strict;
       }
 
       .bg-glow {
         position: absolute;
         border-radius: 50%;
-        filter: blur(120px);
+        filter: blur(100px);
+        will-change: auto;
       }
 
       .bg-glow-1 {
         top: -18vh;
         left: -10vw;
-        width: 60vw;
-        height: 70vh;
+        width: 55vw;
+        height: 65vh;
         background: radial-gradient(circle, rgba(232,90,18,0.18) 0%, transparent 65%);
       }
 
       .bg-glow-2 {
         top: 40vh;
         right: -15vw;
-        width: 55vw;
-        height: 60vh;
+        width: 50vw;
+        height: 55vh;
         background: radial-gradient(circle, rgba(124,58,237,0.10) 0%, transparent 65%);
       }
 
       .bg-glow-3 {
         bottom: -15vh;
         left: 15vw;
-        width: 55vw;
-        height: 55vh;
+        width: 50vw;
+        height: 50vh;
         background: radial-gradient(circle, rgba(232,90,18,0.10) 0%, transparent 65%);
       }
 
@@ -195,8 +199,15 @@ const jsonLd = {
         opacity: 0.7;
       }
 
+      /* Mobile: kill expensive blur + grid — replace with a static gradient */
       @media (max-width: 768px) {
-        .bg-grid { background-size: 48px 48px; }
+        .bg-glow,
+        .bg-grid { display: none; }
+        .site-bg {
+          background:
+            radial-gradient(ellipse at 15% 10%, rgba(232,90,18,0.12) 0%, transparent 45%),
+            radial-gradient(ellipse at 90% 60%, rgba(124,58,237,0.06) 0%, transparent 50%);
+        }
       }
 
       .mobile-call-bar { display: none; }

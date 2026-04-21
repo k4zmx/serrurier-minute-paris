@@ -117,6 +117,8 @@ const reviews = [
     border-top: 1px solid var(--line);
     position: relative;
     z-index: 1;
+    content-visibility: auto;
+    contain-intrinsic-size: 0 700px;
   }
 
   .reviews-inner {
@@ -501,13 +503,28 @@ const reviews = [
   track.addEventListener('scroll', updateBar, { passive: true });
   updateBar();
 
-  let auto = setInterval(() => slide(1), 5000);
-  function reset() {
-    clearInterval(auto);
-    auto = setInterval(() => slide(1), 5000);
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+  const interval = isMobile ? 7000 : 5000;
+  let auto: number | null = null;
+
+  function start() {
+    if (reduceMotion) return;
+    if (auto !== null) window.clearInterval(auto);
+    auto = window.setInterval(() => slide(1), interval);
   }
-  track.addEventListener('mouseenter', () => clearInterval(auto));
-  track.addEventListener('mouseleave', reset);
-  track.addEventListener('touchstart', () => clearInterval(auto), { passive: true });
-  track.addEventListener('touchend', reset);
+  function stop() {
+    if (auto !== null) { window.clearInterval(auto); auto = null; }
+  }
+
+  // Only auto-rotate when the carousel is actually in view
+  const seenIO = new IntersectionObserver((entries) => {
+    entries.forEach((e) => (e.isIntersecting ? start() : stop()));
+  }, { threshold: 0.2 });
+  seenIO.observe(track);
+
+  track.addEventListener('mouseenter', stop);
+  track.addEventListener('mouseleave', start);
+  track.addEventListener('touchstart', stop, { passive: true });
+  track.addEventListener('touchend', start);
 </script>

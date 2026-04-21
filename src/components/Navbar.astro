@@ -7,7 +7,7 @@ const currentPath = Astro.url.pathname;
 
     <a href="/" class="logo" aria-label="Serrurier Minute — Accueil">
       <span class="logo-pill">
-        <img src="/logo.png" alt="Serrurier Minute" width="140" height="40" />
+        <img src="/logo.png" alt="Serrurier Minute" width="140" height="40" loading="eager" decoding="async" fetchpriority="high" />
       </span>
     </a>
 
@@ -46,6 +46,14 @@ const currentPath = Astro.url.pathname;
     position: sticky;
     top: 34px;
     z-index: 40;
+  }
+
+  @media (max-width: 768px) {
+    .navbar {
+      background: var(--bg);
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
   }
 
   .navbar-inner {

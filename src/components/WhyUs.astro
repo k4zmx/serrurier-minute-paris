@@ -28,7 +28,7 @@ const items = [
 
     <aside class="whyus-visual">
       <div class="wv-card">
-        <img src="/whyus.webp" alt="Serrurier installant une serrure A2P à Paris" width="800" height="900" loading="lazy"/>
+        <img src="/whyus.webp" alt="Serrurier installant une serrure A2P à Paris" width="800" height="1000" loading="lazy" decoding="async"/>
         <div class="wv-overlay"></div>
         <div class="wv-badge">
           <span class="wv-badge-kicker">Depuis 2012</span>
@@ -84,6 +84,8 @@ const items = [
     border-top: 1px solid var(--line);
     position: relative;
     z-index: 1;
+    content-visibility: auto;
+    contain-intrinsic-size: 0 800px;
   }
 
   .whyus-inner {
